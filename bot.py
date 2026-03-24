@@ -99,7 +99,8 @@ def send_telegram(message: str) -> bool:
 # ─── DATA FETCHING WITH RETRY ─────────────────────────────────
 def get_klines(symbol: str, interval: str, limit: int = 200):
     """Fetch OHLCV from Binance with retry logic."""
-    url = "https://api.binance.com/api/v3/klines"
+    url = "https://api.binance.me/api/v3/klines"
+    fallback_url = "https://api.binance.com/api/v3/klines"
     for attempt in range(1, API_RETRIES + 1):
         try:
             r = requests.get(url, params={
